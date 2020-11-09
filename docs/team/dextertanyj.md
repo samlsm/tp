@@ -50,7 +50,7 @@ All my code contributions can be found [here](https://nus-cs2103-ay2021s1.github
 * Added a `delete-class` command that allows users to remove classes from Tutor's Pet. [\#62](https://github.com/AY2021S1-CS2103T-T10-4/tp/pull/62)
 * Implemented a `list student by class` command that allows users to list the students in a specific class. [\#95](https://github.com/AY2021S1-CS2103T-T10-4/tp/pull/95)
 * Improved overall code quality and abstraction. [\#77](https://github.com/AY2021S1-CS2103T-T10-4/tp/pull/77) [\#169](https://github.com/AY2021S1-CS2103T-T10-4/tp/pull/169)
-* Consolidated and reformatted UI messages. [\#206](https://github.com/AY2021S1-CS2103T-T10-4/tp/pull/26)
+* Consolidated and reformatted UI messages. [\#206](https://github.com/AY2021S1-CS2103T-T10-4/tp/pull/206)
 
 ### Other Contributions
 

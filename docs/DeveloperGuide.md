@@ -29,7 +29,7 @@ The ***architecture diagram*** given above explains the high-level design of the
 </div>
 
 **`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T10-4/tp/tree/master/src/main/java/tutorspet/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-T10-4/tp/tree/master/src/main/java/tutorspet/MainApp.java). It is responsible for,
-* At app launch: Initializes the components in the correct sequence, and connects them up with each other.
+* At application launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
@@ -156,8 +156,8 @@ This section describes some noteworthy details on how certain features are imple
 
 A `UUID` is a unique 128-bit number to identify a unique `Student` within Tutor’s Pet.
 In Tutor’s Pet, every `Student` upon construction, is assigned a randomly generated `UUID`. It is used to
-uniquely identify a `Student` across `Classes` and `Lessons`. This is important because we are dealing with
-`Student` data not just in the `Student` model, but also in the `Class`es and `Lesson`s model. Using a
+uniquely identify a `Student` across `ModuleClass`es and `Lesson`s. This is important because we are dealing with
+`Student` data not just in the `Student` model, but also in the `ModuleClass` and `Lesson` model. Using a
 `Student` `UUID` will help to ensure referential integrity of `Student` data across different models when
 `Student` data is modified by the user.
 
@@ -172,7 +172,7 @@ Every `Student` contains a `UUID`, `Name`, `Telegram`, `Email`, and a set of `Ta
 ![StudentUUID](images/StudentUUID.png)
 
 From the object diagram above, we have designed the `Student` model such that every `Student` like `Alice`
-has a unique 128 bit `UUID` tagged to her. In addition, the `Name`, `Telegram`, `Email`, and `Tags`
+has a unique 128-bit `UUID` tagged to her. In addition, the `Name`, `Telegram`, `Email`, and `Tags`
 fields are also implemented to define a `Student`.
 
 #### Design Considerations
@@ -432,20 +432,20 @@ the relevant results without knowing the low level implementations.
 
 ##### Aspect 2: Responsibility of relevant methods
 
-* **Alternative 1 (current choice):** Allow `ModuleClassUtil#getParticipationScore` and
-`ModuleClassUtil#getAbsentWeek` to return intermediate values.
+* **Alternative 1 (current choice):** Allow `ModuleClassUtil#getParticipationScore(...)` and
+`ModuleClassUtil#getAbsentWeek(...)` to return intermediate values.
   * Pros:
-    * Reduce the responsibilities of `ModuleClassUtil#getParticipationScore` and `ModuleClassUtil#getAbsentWeek`.
+    * Reduce the responsibilities of `ModuleClassUtil#getParticipationScore(...)` and `ModuleClassUtil#getAbsentWeek(...)`.
   * Cons:
     * Additional processing required to process the results of the method calls in `StatisticsCommand#execute()`.
 
-* **Alternative 2:** Allow `ModuleClassUtil#getParticipationScore` and
-`ModuleClassUtil#getAbsentWeek` to return a `String` representation directly.
+* **Alternative 2:** Allow `ModuleClassUtil#getParticipationScore(...)` and
+`ModuleClassUtil#getAbsentWeek(...)` to return a `String` representation directly.
   * Pros:
     * Easy, straightforward to implement.
     * Does not need to iterate through scores and weeks in `StatisticsCommand`.
   * Cons:
-    * `ModuleClassUtil#getParticipationScore` and `ModuleClassUtil#getAbsentWeek` would have too many
+    * `ModuleClassUtil#getParticipationScore(...)` and `ModuleClassUtil#getAbsentWeek(...)` would have too many
        responsibilities. Violates the Single Responsibility Principle.
 
 ### Add Attendance Feature
@@ -474,16 +474,16 @@ of an `AddAttendanceCommand` with user input `add-attendance c\1 l\1 s\1` repres
 1. As seen from the diagram above, `ModuleClassUtil#addAttendanceToModuleClass()` is then called. Execution of that
    method returns a new `ModuleClass` object with the new attendance of the `targetStudent` added.
 1. The `targetModuleClass` in the `model` is then updated with the new `ModuleClass` object.
-1. The change resulting from the command's execution is saved using the `commit(...)` method for the `undo`/`redo` feature.
+1. The change resulting from the command's execution is saved using the `commit()` method for the `undo`/`redo` feature.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 
-The following activity diagram shows how the `add attendance` operation works.
+The following activity diagram shows how the `AddAttendanceCommand` works.
 
 ![AddAttendanceActivityDiagram](images/AddAttendanceActivityDiagram.png)
 
 #### Design Considerations
 
-##### Aspect 1: How `add attendance` feature executes
+##### Aspect 1: How `AddAttendanceCommand` feature executes
 
 * **Alternative 1 (current choice):** User can only add one attendance at a time.
   * Pros:
@@ -504,7 +504,7 @@ The following activity diagram shows how the `add attendance` operation works.
 
 Alternative 1 was chosen because the cons of implementing alternative 2 outweighs the benefits derived from it. It is
 unlikely for multiple students to have the same participation score and hence the use of this command with multiple
-students is likely to be low. In addition, users can make use of the `recall` feature to speed up the process of
+students is likely to be low. In addition, users can make use of the recall feature to speed up the process of
 recording attendances.
 
 ### Undo/Redo Feature
@@ -778,7 +778,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | * * *    | Tutor with many classes  | Insert my students into the appropriate classes     | Organise my students via classes                               |
 | * * *    | Tutor                    | Delete student entries                              | Update my list of students if a student were to drop the class |
 | * * *    | Tutor with many classes  | Create classes                                      | Put my students in the appropriate classes                     |
-| * * *    | New Tutor                | View the help menu                                  | Be familiar with app usage                                     |
+| * * *    | New Tutor                | View the help menu                                  | Be familiar with application usage                             |
 | * *      | Tutor with many students | Keep notes on each student's performance            | Track their progress over time                                 |
 | * *      | Tutor                    | Mark my student's attendance and participation      | Gauge each student's participation level                       |
 | * *      | Tutor                    | Update the information of my students               | Update my understanding of the progress of my students         |
@@ -813,7 +813,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | *        | Tutor                                                        | Store teaching feedback given by Professors                       | Improve my teaching                                                             |
 | *        | Tutor                                                        | Manage my teaching materials                                      | Find them easily                                                                |
 | *        | Tutor                                                        | Keep track of the hours I have spent teaching/preparing for class | Be aware of how much time I have spent on teaching                              |
-| *        | Tutor for many semesters                                     | Archive my past semesters                                         | Avoid cluttering the app                                                        |
+| *        | Tutor for many semesters                                     | Archive my past semesters                                         | Avoid cluttering the application                                                |
 
 ### Use Cases
 
@@ -1341,7 +1341,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## Appendix: Instructions for Manual Testing
 
-Given below are instructions to test the app manually.
+Given below are instructions to test the application manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
@@ -1363,7 +1363,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+   1. Re-launch the application by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
 #### Undoing a previous change
@@ -1376,7 +1376,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete-class 1` followed by `undo`. <br/>
       Expected: The first class is deleted after the first command.
       The deleted class reappears in the displayed class list after the second command.
-      Details of the `delete` change shown in the status message.
+      Details of the undone `delete` change shown in the status message.
 
 1. Undoing commands that cannot be undone
 
@@ -1399,7 +1399,7 @@ testers are expected to do more *exploratory* testing.
       Expected: The first class is deleted after the first command.
       The deleted class reappears in the displayed class list after the second command.
       The first class is deleted again after the third command.
-      Details of the `delete` change shown in the status message.
+      Details of the redone `delete` change shown in the status message.
 
 1. Redoing when there is no change history
 
@@ -1438,8 +1438,8 @@ testers are expected to do more *exploratory* testing.
       Expected: `list` appears in the command box.
 
    1. Test case: `list` followed by `list-student` followed by pressing the <kbd>↑</kbd> key twice. <br/>
-      Expected: `list-student` appears in the command box after the first key press.
-      `list` appears in the command box after the second key press.
+      Expected: `list-student` appears in the command box after the first <kbd>↑</kbd> key press.
+      `list` appears in the command box after the second <kbd>↑</kbd> key press.
 
    1. Test case: `list` followed by typing `delete-student 1` without execution, then pressing the <kbd>↑</kbd> and then <kbd>↓</kbd> key. <br/>
       Expected: `list` appears after the <kbd>↑</kbd> key press.
@@ -1716,7 +1716,7 @@ testers are expected to do more *exploratory* testing.
       number of lesson in a specific class)<br>
       Expected: No lesson is deleted. Error details shown in the status message.
 
-### Displaying a lesson's venue
+#### Displaying a lesson's venue
 
 1. Displaying a lesson's venue
 
