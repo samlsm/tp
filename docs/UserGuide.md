@@ -610,7 +610,7 @@ Other examples:
 
 <div markdown="block" class="alert alert-primary">
 
-:bulb: **Tip:** Make use of the  [find class](#finding-a-class-by-name--find-class) command to filter the displayed class list to your
+:bulb: **Tip:** Make use of the  [`find-class`](#finding-a-class-by-name--find-class) command to filter the displayed class list to your
 desired class. You can now type in index 1 directly to edit the name of that class.
 
 </div>
@@ -729,7 +729,7 @@ entered commands. This reduces the amount you need to type.
 Other examples:
 * `find-student Alex`<br/>
   `link s\1 c\2`<br/>
-  Adds the 1st result of the find student command to the 2nd class in the displayed class list.
+  Adds the 1st result of the `find-student` command to the 2nd class in the displayed class list.
 
 #### Removing a student from a class : `unlink`
 
@@ -759,7 +759,7 @@ of a particular class. Now it is easier for you to find the student to remove.
 
 <div markdown="block" class="alert alert-warning">
 
-:warning: **Caution:** The student's attendance in the class will also be deleted.
+:warning: **Caution:** The student's attendance in the class will be deleted.
 
 </div>
 
@@ -827,7 +827,7 @@ For example:
 
 * You must type out the day in full.
 
-* You are not allowed to type in overnight lessons. For example, a lesson cannot start at `23:59` and end at `00:01`.
+* You are not allowed to add overnight lessons. For example, a lesson cannot start at `23:59` and end at `00:01`.
 
 * You must specify at least one field (DAY, START_TIME, END_TIME, VENUE) to be changed.
 
@@ -863,7 +863,7 @@ For example:
 Other examples:
 * `find-class CS2030 lab`<br>
   `delete-lesson c\1 l\1`<br>
-  Deletes the 1st lesson of the 1st class in the results of the find class command.
+  Deletes the 1st lesson of the 1st class in the results of the `find-class` command.
 
 <div markdown="block" class="alert alert-primary">
 
@@ -918,12 +918,12 @@ Other examples:
 * `find-class CS2100 lab`<br>
   `find-student bernice yu`<br>
   `add-attendance c\1 l\1 s\1 w\10 p\70`<br>
-  Adds the attendance of the 1st student to the 1st lesson of the 1st class in the results of the find commands.<br>
+  Adds the attendance of the 1st student to the 1st lesson of the 1st class in the results of the `find-` commands.<br>
   Attendance recorded is for week 10 and student's participation score is 70.
 
 * `list-student c\1`<br>
   `add-attendance c\1 l\1 s\2 w\5 p\50`<br>
-  Adds the attendance of the 2nd student in the results of the list command to the 1st lesson of the 1st class.<br>
+  Adds the attendance of the 2nd student in the results of the `list` command to the 1st lesson of the 1st class.<br>
   Attendance recorded is for week 5 and student's participation score is 50.
 
 <div markdown="block" class="alert alert-info">
@@ -939,8 +939,8 @@ Other examples:
 <div markdown="block" class="alert alert-primary">
 
 :bulb: **Tip:** If you are planning to add multiple attendances consecutively, click on the command
-box and make use of the `recall` function by pressing <kbd>↑</kbd> key. This `recall` function automatically
-inputs your most recent command into the command box allowing you to type less!
+box and make use of the recall function by pressing <kbd>↑</kbd> key. This recall function automatically
+inputs your most recent command into the command box, allowing you to type less!
 
 </div>
 
@@ -1050,7 +1050,7 @@ For example:
 
 1. You type in the command `list-student c\1` to see the students in your `CS2103T Tutorial` class.
 
-1. Next, you would like to find out if Alex has been participating actively throughout the semester
+1. Next, you would like to find out if Alex has been participating actively throughout the semester.
 
 1. You type in the command `stats c\1 s\1` and press <kbd>Enter</kbd>.
 

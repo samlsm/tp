@@ -1376,7 +1376,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete-class 1` followed by `undo`. <br/>
       Expected: The first class is deleted after the first command.
       The deleted class reappears in the displayed class list after the second command.
-      Details of the `delete` change shown in the status message.
+      Details of the undone `delete` change shown in the status message.
 
 1. Undoing commands that cannot be undone
 
@@ -1399,7 +1399,7 @@ testers are expected to do more *exploratory* testing.
       Expected: The first class is deleted after the first command.
       The deleted class reappears in the displayed class list after the second command.
       The first class is deleted again after the third command.
-      Details of the `delete` change shown in the status message.
+      Details of the redone `delete` change shown in the status message.
 
 1. Redoing when there is no change history
 
@@ -1438,8 +1438,8 @@ testers are expected to do more *exploratory* testing.
       Expected: `list` appears in the command box.
 
    1. Test case: `list` followed by `list-student` followed by pressing the <kbd>↑</kbd> key twice. <br/>
-      Expected: `list-student` appears in the command box after the first key press.
-      `list` appears in the command box after the second key press.
+      Expected: `list-student` appears in the command box after the first <kbd>↑</kbd> key press.
+      `list` appears in the command box after the second <kbd>↑</kbd> key press.
 
    1. Test case: `list` followed by typing `delete-student 1` without execution, then pressing the <kbd>↑</kbd> and then <kbd>↓</kbd> key. <br/>
       Expected: `list` appears after the <kbd>↑</kbd> key press.
