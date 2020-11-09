@@ -156,7 +156,7 @@ This section describes some noteworthy details on how certain features are imple
 
 A `UUID` is a unique 128-bit number to identify a unique `Student` within Tutor’s Pet.
 In Tutor’s Pet, every `Student` upon construction, is assigned a randomly generated `UUID`. It is used to
-uniquely identify a `Student` across `ModuleClass`es and `Lesson`es. This is important because we are dealing with
+uniquely identify a `Student` across `ModuleClass`es and `Lesson`s. This is important because we are dealing with
 `Student` data not just in the `Student` model, but also in the `ModuleClass` and `Lesson` model. Using a
 `Student` `UUID` will help to ensure referential integrity of `Student` data across different models when
 `Student` data is modified by the user.
