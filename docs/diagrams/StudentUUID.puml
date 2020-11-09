@@ -6,14 +6,12 @@ skinparam ClassBorderColor #000000
 'title Student UUID Example
 
 show object fields
-package Students <<rectangle>> {
-    object "<u>:Student" as Student {
-        uuid : 0c527a3f-8a6f-4c16-b57d-563a9c43cf6b
-        name : Alice Pauline
-        telegram : ALice_P
-        email : alice@example.com
-        tags : Average
-    }
+object "<u>:Student" as Student {
+    uuid : 0c527a3f-8a6f-4c16-b57d-563a9c43cf6b
+    name : Alice Pauline
+    telegram : ALice_P
+    email : alice@example.com
+    tags : Average
 }
 
 @enduml
